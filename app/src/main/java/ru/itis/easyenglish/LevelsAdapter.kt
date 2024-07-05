@@ -3,6 +3,7 @@ package ru.itis.easyenglish
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -20,6 +21,7 @@ class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
 
     inner class LevelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val level: TextView = itemView.findViewById(R.id.levelDif)
+        val icon : ImageView = itemView.findViewById(R.id.level_logo)
 
         init {
             itemView.setOnClickListener {
@@ -39,5 +41,11 @@ class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
     override fun onBindViewHolder(holder: LevelViewHolder, position: Int) {
         val currentItem = levels[position]
         holder.level.text = currentItem
+        when(position) {
+            0 -> holder.icon.setImageResource(R.drawable.ic_a1)
+            1 -> holder.icon.setImageResource(R.drawable.ic_a2)
+            2 -> holder.icon.setImageResource(R.drawable.ic_b1)
+            3 -> holder.icon.setImageResource(R.drawable.ic_b2)
+        }
     }
 }
