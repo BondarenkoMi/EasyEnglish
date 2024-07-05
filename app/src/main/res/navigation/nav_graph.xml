@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_grpah">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_practice_main">
+    <fragment
+        android:id="@+id/navigation_practice_main"
+        android:name="ru.itis.easyenglish.PraciticeMainFragment"
+        android:label="practicemain"
+        tools:layout="@layout/fragment_practice_main"/>
 
 </navigation>

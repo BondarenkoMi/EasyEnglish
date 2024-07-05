@@ -6,6 +6,7 @@
     app:cardCornerRadius="4dp"
     android:background="@drawable/stroke_item"
     app:cardBackgroundColor="@android:color/transparent"
+    android:padding="8dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,8 +30,8 @@
             android:textSize="24sp"
             android:fontFamily="monospace"
             app:layout_constraintStart_toEndOf="@id/level_logo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/level_logo"
+            app:layout_constraintBottom_toBottomOf="@id/level_logo"
             android:layout_marginStart="32dp"/>
         <TextView
             android:id="@+id/words_learned"
