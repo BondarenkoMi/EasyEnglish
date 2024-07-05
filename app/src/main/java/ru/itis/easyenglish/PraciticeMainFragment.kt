@@ -31,5 +31,6 @@ class PraciticeMainFragment : Fragment() {
         adapter = LevelsAdapter()
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+        return TODO("Provide the return value")
     }
 }
