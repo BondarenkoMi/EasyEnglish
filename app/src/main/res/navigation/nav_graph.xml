@@ -6,8 +6,63 @@
     app:startDestination="@id/navigation_practice_main">
     <fragment
         android:id="@+id/navigation_practice_main"
-        android:name="ru.itis.easyenglish.PraciticeMainFragment"
+        android:name="ru.itis.easyenglish.practice.PraciticeMainFragment"
         android:label="practicemain"
-        tools:layout="@layout/fragment_practice_main"/>
+        tools:layout="@layout/fragment_practice_main">
+        <action
+            android:id="@+id/action_navigation_practice_main_to_navigation_level_a1"
+            app:destination="@id/navigation_level_a1" />
+        <action
+            android:id="@+id/action_navigation_practice_main_to_navigation_level_a2"
+            app:destination="@id/navigation_level_a2" />
+        <action
+            android:id="@+id/action_navigation_practice_main_to_navigation_level_b1"
+            app:destination="@id/navigation_level_b1" />
+        <action
+            android:id="@+id/action_navigation_practice_main_to_navigation_level_b2"
+            app:destination="@id/navigation_level_b2" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_theory"
+        android:name="ru.itis.easyenglish.theory.TheoryMainFragment"
+        android:label="theory"
+        tools:layout="@layout/fragment_theory_main"/>
+    <fragment
+        android:id="@+id/navigation_level_a1"
+        android:name="ru.itis.easyenglish.practice.a1LevelFragment"
+        android:label="a1 level"
+        tools:layout="@layout/fragment_level">
+        <action
+            android:id="@+id/action_navigation_level_a1_to_navigation_practice_main"
+            app:destination="@id/navigation_practice_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_level_a2"
+        android:name="ru.itis.easyenglish.practice.a2LevelFragment"
+        android:label="a2 level"
+        tools:layout="@layout/fragment_level">
+        <action
+            android:id="@+id/action_navigation_level_a2_to_navigation_practice_main"
+            app:destination="@id/navigation_practice_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_level_b1"
+        android:name="ru.itis.easyenglish.practice.b1LevelFragment"
+        android:label="a2 level"
+        tools:layout="@layout/fragment_level">
+        <action
+            android:id="@+id/action_navigation_level_b1_to_navigation_practice_main"
+            app:destination="@id/navigation_practice_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_level_b2"
+        android:name="ru.itis.easyenglish.practice.b2LevelFragment"
+        android:label="a2 level"
+        tools:layout="@layout/fragment_level">
+        <action
+            android:id="@+id/action_navigation_level_b2_to_navigation_practice_main"
+            app:destination="@id/navigation_practice_main" />
+    </fragment>
+
 
 </navigation>

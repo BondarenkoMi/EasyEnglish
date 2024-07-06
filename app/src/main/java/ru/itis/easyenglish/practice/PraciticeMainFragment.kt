@@ -1,4 +1,4 @@
-package ru.itis.easyenglish
+package ru.itis.easyenglish.practice
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,7 +30,6 @@ class PraciticeMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         layoutManager = LinearLayoutManager(requireContext())
         binding.levelsList.layoutManager = layoutManager
-
         adapter= LevelsAdapter()
         binding.levelsList.adapter = adapter
     }

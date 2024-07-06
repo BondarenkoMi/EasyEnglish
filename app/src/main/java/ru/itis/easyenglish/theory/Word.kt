@@ -1,4 +1,4 @@
-package ru.itis.easyenglish
+package ru.itis.easyenglish.theory
 
 class Word(
     val value: String,

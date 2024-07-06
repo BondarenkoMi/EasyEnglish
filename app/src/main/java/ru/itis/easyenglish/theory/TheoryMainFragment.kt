@@ -1,4 +1,4 @@
-package ru.itis.easyenglish
+package ru.itis.easyenglish.theory
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ru.itis.easyenglish.R
 
 class TheoryMainFragment : Fragment() {
 

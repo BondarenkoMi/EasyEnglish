@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/practice_bot"
+        android:id="@+id/navigation_practice_main"
         android:icon="@color/black"
         android:title="практис"/>
-
+    <item
+        android:id="@+id/navigation_theory"
+        android:icon="@color/black"
+        android:title="теория"/>
 
 </menu>

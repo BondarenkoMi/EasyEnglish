@@ -1,10 +1,11 @@
-package ru.itis.easyenglish
+package ru.itis.easyenglish.theory
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ru.itis.easyenglish.R
 
 class WordAdapter(private val words: List<Word>) : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 

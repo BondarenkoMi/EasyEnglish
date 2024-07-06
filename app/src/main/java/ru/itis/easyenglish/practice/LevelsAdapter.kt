@@ -1,4 +1,4 @@
-package ru.itis.easyenglish
+package ru.itis.easyenglish.practice
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ru.itis.easyenglish.R
 
 class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
     private val levels: List<String> = listOf("A1", "A2", "B1", "B2")
