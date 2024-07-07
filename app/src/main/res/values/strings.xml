@@ -3,4 +3,6 @@
     <string name="level">Level</string>
     <string name="words_learned">Слов пройдено</string>
     <string name="count_for_a1">0/10</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -50,4 +50,10 @@ class WordRepository {
     fun getWords(): List<Word> {
         return words
     }
+
+    fun getWordsOfLevel(key: Int): List<Word>{
+        return words.filter { it.dif == key }
+    }
+
+
 }

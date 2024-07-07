@@ -1,12 +1,15 @@
 package ru.itis.easyenglish.practice
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.easyenglish.R
+import ru.itis.easyenglish.theory.Word
 
 class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
     private val levels: List<String> = listOf("A1", "A2", "B1", "B2")
@@ -48,5 +51,14 @@ class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
             2 -> holder.icon.setImageResource(R.drawable.ic_b1)
             3 -> holder.icon.setImageResource(R.drawable.ic_b2)
         }
+        holder.itemView.setOnClickListener {
+            holder.itemView.findNavController().navigate(
+                resId = R.id.action_navigation_practice_main_to_levelFragment,
+                args = LevelFragment.bundle(
+                    position + 1
+                )
+            )
+        }
     }
+
 }

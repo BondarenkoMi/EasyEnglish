@@ -23,9 +23,14 @@ class PraciticeMainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         _binding = FragmentPracticeMainBinding.inflate(inflater, container, false)
         return binding.root
+
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         layoutManager = LinearLayoutManager(requireContext())

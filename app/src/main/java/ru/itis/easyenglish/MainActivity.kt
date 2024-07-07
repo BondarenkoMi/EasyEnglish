@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.itis.easyenglish.databinding.ActivityMainBinding
+import ru.itis.easyenglish.theory.WordRepository
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -23,5 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomnav)
         bottomNavigationView.setupWithNavController(navController)
+
     }
 }
