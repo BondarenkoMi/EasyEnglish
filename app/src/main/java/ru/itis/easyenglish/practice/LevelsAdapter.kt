@@ -1,6 +1,6 @@
 package ru.itis.easyenglish.practice
 
-import android.os.Bundle
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +9,14 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.easyenglish.R
-import ru.itis.easyenglish.theory.Word
 
 class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
-    private val levels: List<String> = listOf("A1", "A2", "B1", "B2")
+    val levels: List<Level> = listOf(
+        Level(1, 0),
+        Level(2, 0),
+        Level(3, 0),
+        Level(4, 0),
+    )
     private var listener: OnItemClickListener? = null
 
     interface OnItemClickListener {
@@ -25,7 +29,8 @@ class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
 
     inner class LevelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val level: TextView = itemView.findViewById(R.id.levelDif)
-        val icon : ImageView = itemView.findViewById(R.id.level_logo)
+        val icon: ImageView = itemView.findViewById(R.id.level_logo)
+        val countWords: TextView = itemView.findViewById(R.id.count_words)
 
         init {
             itemView.setOnClickListener {
@@ -42,10 +47,17 @@ class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
 
     override fun getItemCount(): Int = levels.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: LevelViewHolder, position: Int) {
         val currentItem = levels[position]
-        holder.level.text = currentItem
-        when(position) {
+        when (currentItem.dif) {
+            1 -> holder.level.text = "A1"
+            2 -> holder.level.text = "A2"
+            3 -> holder.level.text = "B1"
+            4 -> holder.level.text = "B2"
+        }
+        holder.countWords.text = "${currentItem.countWords}/10"
+        when (position) {
             0 -> holder.icon.setImageResource(R.drawable.ic_a1)
             1 -> holder.icon.setImageResource(R.drawable.ic_a2)
             2 -> holder.icon.setImageResource(R.drawable.ic_b1)
@@ -59,6 +71,11 @@ class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
                 )
             )
         }
+    }
+
+    fun setWordCount(position: Int, count: Int) {
+        levels[position].countWords = count
+        notifyItemChanged(position)
     }
 
 }

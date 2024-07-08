@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/green_rectangle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline"
         />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/red_rectangle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,6 +66,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
     <ImageView
+        android:id="@+id/gray_rectangle"
         android:layout_width="304dp"
         android:layout_height="304dp"
         android:src="@drawable/rectangle"
@@ -74,13 +75,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/go_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:src="@drawable/go_back_arrow_svgrepo_com"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/practice_english_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/gray_rectangle"
+        app:layout_constraintEnd_toEndOf="@id/gray_rectangle"
+        app:layout_constraintTop_toTopOf="@id/gray_rectangle"
+        app:layout_constraintBottom_toBottomOf="@id/gray_rectangle"
+        android:text="@string/word"
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        android:fontFamily="monospace" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
