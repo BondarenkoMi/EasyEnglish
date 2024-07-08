@@ -41,7 +41,14 @@ class TheoryLevelAdapter(private val words: List<Word>) : RecyclerView.Adapter<T
 
     class LevelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(level: String, words: List<Word>, isExpanded: Boolean) {
-            itemView.findViewById<TextView>(R.id.level_text).text = level
+            val levelTextView = itemView.findViewById<TextView>(R.id.level_text)
+            levelTextView.text = level
+            when (level) {
+                "A1" -> levelTextView.setBackgroundColor(0xFF5DD377.toInt())
+                "A2" -> levelTextView.setBackgroundColor(0xFF62CEDA.toInt())
+                "B1" -> levelTextView.setBackgroundColor(0xFFF2F54F.toInt())
+                "B2" -> levelTextView.setBackgroundColor(0xFFF78336.toInt())
+            }
             val wordsListView = itemView.findViewById<RecyclerView>(R.id.words_list)
             if (isExpanded) {
                 wordsListView.visibility = View.VISIBLE

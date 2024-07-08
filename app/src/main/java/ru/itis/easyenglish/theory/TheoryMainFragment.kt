@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import ru.itis.easyenglish.R
 
 class TheoryMainFragment : Fragment() {
@@ -19,11 +20,18 @@ class TheoryMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_theory_main, container, false)
+        return inflater.inflate(R.layout.fragment_theory_main, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = TheoryLevelAdapter(wordRepository.getWords())
         recyclerView.adapter = adapter
-        return view
+
+        Snackbar.make(view, "Чтобы открыть слова, нажмите на нужный уровень", Snackbar.LENGTH_LONG)
+            .show()
     }
 }
