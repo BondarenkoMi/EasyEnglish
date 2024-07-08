@@ -18,16 +18,23 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLevelBinding.bind(view)
-        var translated : Boolean = false
+        var translated = false
         val key = arguments?.getInt(KEY) ?: "ERROR" as Int
         level = LevelsAdapter().levels[key - 1]
         words = level.words
         learnedWords = level.learnedWords
         val backButton = binding.goBackButton
         val grayRectangle = binding.grayRectangle
-        val greenButton = binding.greenRectangle
-        val redButton = binding.redRectangle
+        val greenButton = binding.buttonCheck
+        val redButton = binding.buttonCross
+        val textLevel = binding.textLevel
 
+        textLevel.setText(when (key) {
+            1 -> "A1"
+            2 -> "A2"
+            3 -> "B1"
+            4 -> "B2"
+            else -> "ERROR"})
 
         showWord()
 
