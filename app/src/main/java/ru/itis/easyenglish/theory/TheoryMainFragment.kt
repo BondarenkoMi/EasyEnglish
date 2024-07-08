@@ -12,24 +12,18 @@ import ru.itis.easyenglish.R
 class TheoryMainFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var wordAdapter: WordAdapter
+    private lateinit var adapter: TheoryLevelAdapter
+    private val wordRepository = WordRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_theory_main, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        recyclerView = view.findViewById(R.id.recyclerView)
-
-        val wordRepository = WordRepository()
-        wordAdapter = WordAdapter(wordRepository.getWords())
-
+        val view = inflater.inflate(R.layout.fragment_theory_main, container, false)
+        recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = wordAdapter
+        adapter = TheoryLevelAdapter(wordRepository.getWords())
+        recyclerView.adapter = adapter
+        return view
     }
 }

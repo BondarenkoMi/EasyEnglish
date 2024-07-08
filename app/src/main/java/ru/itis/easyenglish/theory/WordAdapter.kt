@@ -9,12 +9,6 @@ import ru.itis.easyenglish.R
 
 class WordAdapter(private val words: List<Word>) : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 
-    class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val englishWord: TextView = itemView.findViewById(R.id.english_word)
-        val russianWord: TextView = itemView.findViewById(R.id.russian_word)
-        val wordLevel: TextView = itemView.findViewById(R.id.level)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_word, parent, false)
         return WordViewHolder(view)
@@ -22,19 +16,14 @@ class WordAdapter(private val words: List<Word>) : RecyclerView.Adapter<WordAdap
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val word = words[position]
-        holder.englishWord.text = word.value
-        holder.russianWord.text = word.translate
-        val levelText = when (word.dif) {
-            1 -> "A1"
-            2 -> "A2"
-            3 -> "B1"
-            4 -> "B2"
-            else -> "Unknown"
-        }
-        holder.wordLevel.text = "$levelText"
+        holder.bind(word)
     }
 
-    override fun getItemCount(): Int {
-        return words.size
+    override fun getItemCount() = words.size
+
+    class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(word: Word) {
+            itemView.findViewById<TextView>(R.id.word_text).text = "${word.value} - ${word.translate}"
+        }
     }
 }
