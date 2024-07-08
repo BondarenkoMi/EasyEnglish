@@ -56,4 +56,8 @@ class WordRepository {
     }
 
 
+    fun getRandomWord(): Word{
+        return words.random()
+    }
+
 }
