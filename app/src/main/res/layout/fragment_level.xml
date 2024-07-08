@@ -5,96 +5,97 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageButton
-        android:id="@+id/green_rectangle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/rectangle_3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        />
+
+    <Button
+        android:id="@+id/gray_rectangle"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="@+id/guideline2"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0" />
+
+
+    <TextView
+        android:id="@+id/practice_english_word"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/word"
+        android:textSize="42sp"
+        android:textStyle="bold"/>
 
     <ImageButton
-        android:id="@+id/red_rectangle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/rectangle_4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/tick_vlltchoso6eq"
-        app:layout_constraintBottom_toBottomOf="@id/green_rectangle"
-        app:layout_constraintEnd_toEndOf="@id/green_rectangle"
-        app:layout_constraintStart_toStartOf="@id/green_rectangle"
-        app:layout_constraintTop_toTopOf="@id/green_rectangle"
-         />
-
-    <ImageView
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:src="@drawable/cross_svgrepo_com"
-        app:layout_constraintBottom_toBottomOf="@id/red_rectangle"
-        app:layout_constraintEnd_toEndOf="@id/red_rectangle"
-        app:layout_constraintStart_toStartOf="@id/red_rectangle"
-        app:layout_constraintTop_toTopOf="@id/red_rectangle" />
+        android:id="@+id/go_back_button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:scaleType="fitStart"
+        android:src="@drawable/go_back_arrow_svgrepo_com"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.87" />
+
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="25dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-    <ImageView
-        android:id="@+id/gray_rectangle"
-        android:layout_width="304dp"
-        android:layout_height="304dp"
-        android:src="@drawable/rectangle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintGuide_end="25dp" />
 
     <ImageButton
-        android:id="@+id/go_back_button"
+        android:id="@+id/buttonCross"
+        android:layout_width="72sp"
+        android:layout_height="72sp"
+        android:background="@null"
+        android:contentDescription="@string/button_cross"
+        android:scaleType="fitStart"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:srcCompat="@drawable/button_cross"/>
+
+    <ImageButton
+        android:id="@+id/buttonCheck"
+        android:layout_width="72sp"
+        android:layout_height="72sp"
+        android:background="@null"
+        android:contentDescription="@string/button_check"
+        android:scaleType="fitStart"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="@+id/guideline2"
+        app:srcCompat="@drawable/button_check"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:src="@drawable/go_back_arrow_svgrepo_com"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="650dp" />
+
     <TextView
-        android:id="@+id/practice_english_word"
+        android:id="@+id/textLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/gray_rectangle"
-        app:layout_constraintEnd_toEndOf="@id/gray_rectangle"
-        app:layout_constraintTop_toTopOf="@id/gray_rectangle"
-        app:layout_constraintBottom_toBottomOf="@id/gray_rectangle"
-        android:text="@string/word"
+        android:text="@string/a1"
         android:textSize="40sp"
-        android:textColor="@color/black"
-        android:fontFamily="monospace" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
