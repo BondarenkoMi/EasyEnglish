@@ -28,6 +28,12 @@
             app:destination="@id/navigation_practice_main"
             app:enterAnim="@android:anim/fade_out" />
     </fragment>
+    <fragment
+        android:id="@+id/randomWordFragment"
+        android:name="ru.itis.easyenglish.practice.RandomWordFragment"
+        android:label="fragment_random_word"
+        tools:layout="@layout/fragment_random_word" />
+
 
 
 </navigation>
