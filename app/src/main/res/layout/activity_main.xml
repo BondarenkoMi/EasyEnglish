@@ -10,9 +10,13 @@
         android:id="@+id/bottomnav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:addStatesFromChildren="false"
+        android:animationCache="true"
+        android:forceHasOverlappingRendering="false"
+        android:isScrollContainer="false"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_menu"
-        />
+        app:menu="@menu/bottom_menu" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"

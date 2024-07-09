@@ -2,6 +2,7 @@ package ru.itis.easyenglish.practice
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AlphaAnimation
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.itis.easyenglish.R
@@ -28,6 +29,12 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
         val greenButton = binding.buttonCheck
         val redButton = binding.buttonCross
         val textLevel = binding.textLevel
+        val textWord = binding.practiceEnglishWord
+
+        val fadeIn = AlphaAnimation(0f, 1f)
+        val fadeOut = AlphaAnimation(1f, 0f)
+        fadeIn.duration = 1000
+        fadeOut.duration = 1000
 
         textLevel.setText(when (key) {
             1 -> "A1"
@@ -36,13 +43,16 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
             4 -> "B2"
             else -> "ERROR"})
 
+        textWord.startAnimation(fadeIn)
         showWord()
 
         grayRectangle.setOnClickListener {
             if (translated) {
+                textWord.startAnimation(fadeIn)
                 showWord()
                 translated = false
             } else {
+                textWord.startAnimation(fadeIn)
                 showTranslation()
                 translated = true
             }
