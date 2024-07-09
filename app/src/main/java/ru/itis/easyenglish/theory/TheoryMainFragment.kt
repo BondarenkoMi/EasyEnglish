@@ -38,6 +38,7 @@ class TheoryMainFragment : Fragment() {
             Snackbar.LENGTH_SHORT).setAction("Action", null)
         val viewSnack: View = snackbar.getView()
         val params = viewSnack.layoutParams as FrameLayout.LayoutParams
+        params.bottomMargin = 200
         viewSnack.layoutParams = params
         snackbar.show()
     }

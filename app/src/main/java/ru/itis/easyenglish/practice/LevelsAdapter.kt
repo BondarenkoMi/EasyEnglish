@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.easyenglish.R
@@ -29,7 +30,7 @@ class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
 
     inner class LevelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val level: TextView = itemView.findViewById(R.id.levelDif)
-        val icon: ImageView = itemView.findViewById(R.id.level_logo)
+        val backFade: ConstraintLayout = itemView.findViewById(R.id.backFade)
         val countWords: TextView = itemView.findViewById(R.id.count_words)
 
         init {
@@ -58,10 +59,10 @@ class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
         }
         holder.countWords.text = "${currentItem.countWords}/10"
         when (position) {
-            0 -> holder.icon.setImageResource(R.drawable.ic_a1)
-            1 -> holder.icon.setImageResource(R.drawable.ic_a2)
-            2 -> holder.icon.setImageResource(R.drawable.ic_b1)
-            3 -> holder.icon.setImageResource(R.drawable.ic_b2)
+            0 -> holder.backFade.setBackgroundResource(R.drawable.gradient1)
+            1 -> holder.backFade.setBackgroundResource(R.drawable.gradient2)
+            2 -> holder.backFade.setBackgroundResource(R.drawable.gradient3)
+            3 -> holder.backFade.setBackgroundResource(R.drawable.gradient4)
         }
         holder.itemView.setOnClickListener {
             holder.itemView.findNavController().navigate(
