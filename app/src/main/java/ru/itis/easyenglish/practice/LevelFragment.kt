@@ -73,27 +73,17 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
                 textWord.startAnimation(fadeIn)
                 showWord()
                 translated = false
-                enableButtons()
             } else {
                 textWord.startAnimation(fadeIn)
                 showTranslation()
                 translated = true
-                enableButtons()
             }
         }
         checkButton.setOnClickListener {
-            if (checkButton.isEnabled) {
                 markWordAsCompleted(true)
                 currentIndex++
                 showWord()
                 checkAllWordsCompleted()
-            } else {
-                Snackbar.make(
-                    binding.root.rootView,
-                    "Кнопка недоступна, пока не посмотрите перевод.",
-                    Snackbar.LENGTH_SHORT
-                ).show()
-            }
         }
         crossButton.setOnClickListener {
             markWordAsCompleted(false)
@@ -122,7 +112,6 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
             currentIndex = 0
         }
         binding.practiceEnglishWord.text = shuffledWords[currentIndex].englishWord
-        disableButtons()
         if (shuffledWords[currentIndex].savedStatus == true) {
             favoriteButton.setImageResource(R.drawable.star_yellow)
         } else {
@@ -132,17 +121,6 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
 
     private fun showTranslation() {
         binding.practiceEnglishWord.text = shuffledWords[currentIndex].russianWord
-        enableButtons()
-    }
-
-    private fun disableButtons() {
-        checkButton.isEnabled = false
-        crossButton.isEnabled = false
-    }
-
-    private fun enableButtons() {
-        checkButton.isEnabled = true
-        crossButton.isEnabled = true
     }
 
     private fun markWordAsCompleted(completed: Boolean) {
