@@ -6,21 +6,24 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.itis.easyenglish.R
 import ru.itis.easyenglish.databinding.FragmentLevelBinding
-import ru.itis.easyenglish.theory.Word
+import ru.itis.easyenglish.theory.WordDatabase
+import ru.itis.easyenglish.theory.WordEntity
+import ru.itis.easyenglish.theory.WordRepository
 
 class LevelFragment : Fragment(R.layout.fragment_level) {
     private lateinit var binding: FragmentLevelBinding
     private var currentIndex = 0
     private lateinit var level : Level
-    private var words : MutableList<Word> = mutableListOf()
-    private var learnedWords : MutableList<Word> = mutableListOf()
+    private var words : MutableList<WordEntity> = mutableListOf()
+    private var learnedWords : MutableList<WordEntity> = mutableListOf()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLevelBinding.bind(view)
         var translated : Boolean = false
         val key = arguments?.getInt(KEY) ?: "ERROR" as Int
-        level = LevelsAdapter().levels[key - 1]
+        val wordRepository = WordRepository(WordDatabase.getDatabase(requireContext()).wordDao())
+        level = LevelsAdapter(wordRepository).levels[key - 1]
         words = level.words
         learnedWords = level.learnedWords
         val backButton = binding.goBackButton
@@ -61,7 +64,7 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
 
     private fun showWord() {
         if (currentIndex < words.size) {
-            binding.practiceEnglishWord.text = words[currentIndex].value
+            binding.practiceEnglishWord.text = words[currentIndex].englishWord
         } else {
             binding.practiceEnglishWord.text = "Words ended"
             Thread.sleep(3000)
@@ -74,7 +77,7 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
 
     private fun showTranslation() {
         if (currentIndex < words.size) {
-            binding.practiceEnglishWord.text = words[currentIndex].translate
+            binding.practiceEnglishWord.text = words[currentIndex].russianWord
         }
     }
 

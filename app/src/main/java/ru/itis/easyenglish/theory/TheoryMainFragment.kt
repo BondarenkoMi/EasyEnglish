@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import ru.itis.easyenglish.R
 
 class TheoryMainFragment : Fragment() {
@@ -25,11 +27,14 @@ class TheoryMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.recyclerView)
-
-        val wordRepository = WordRepository()
-        wordAdapter = WordAdapter(wordRepository.getWords())
-
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = wordAdapter
+
+        val wordRepository = WordRepository(WordDatabase.getDatabase(requireContext()).wordDao())
+
+        lifecycleScope.launch {
+            val words = wordRepository.getWords()
+            wordAdapter = WordAdapter(words)
+            recyclerView.adapter = wordAdapter
+        }
     }
 }

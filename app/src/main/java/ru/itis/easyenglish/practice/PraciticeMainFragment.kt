@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.easyenglish.databinding.FragmentPracticeMainBinding
+import ru.itis.easyenglish.theory.WordDatabase
+import ru.itis.easyenglish.theory.WordRepository
 
 class PraciticeMainFragment : Fragment() {
     private var _binding: FragmentPracticeMainBinding? = null
@@ -35,7 +37,8 @@ class PraciticeMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         layoutManager = LinearLayoutManager(requireContext())
         binding.levelsList.layoutManager = layoutManager
-        adapter = LevelsAdapter()
+        val wordRepository = WordRepository(WordDatabase.getDatabase(requireContext()).wordDao())
+        adapter = LevelsAdapter(wordRepository)
         binding.levelsList.adapter = adapter
         arguments?.let {
             val key = it.getInt(KEY)

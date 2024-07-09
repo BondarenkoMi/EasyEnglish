@@ -6,16 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.easyenglish.R
+import ru.itis.easyenglish.theory.WordDatabase
+import ru.itis.easyenglish.theory.WordRepository
 
-class LevelsAdapter() : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
+class LevelsAdapter(wordRepository: WordRepository) : RecyclerView.Adapter<LevelsAdapter.LevelViewHolder>() {
     val levels: List<Level> = listOf(
-        Level(1, 0),
-        Level(2, 0),
-        Level(3, 0),
-        Level(4, 0),
+        Level(1, 0, wordRepository),
+        Level(2, 0, wordRepository),
+        Level(3, 0, wordRepository),
+        Level(4, 0, wordRepository),
     )
     private var listener: OnItemClickListener? = null
 

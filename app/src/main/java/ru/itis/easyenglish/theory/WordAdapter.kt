@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.easyenglish.R
 
-class WordAdapter(private val words: List<Word>) : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
+class WordAdapter(private val words: List<WordEntity>) : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 
     class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val englishWord: TextView = itemView.findViewById(R.id.english_word)
@@ -22,9 +22,9 @@ class WordAdapter(private val words: List<Word>) : RecyclerView.Adapter<WordAdap
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val word = words[position]
-        holder.englishWord.text = word.value
-        holder.russianWord.text = word.translate
-        val levelText = when (word.dif) {
+        holder.englishWord.text = word.englishWord
+        holder.russianWord.text = word.russianWord
+        val levelText = when (word.level) {
             1 -> "A1"
             2 -> "A2"
             3 -> "B1"
