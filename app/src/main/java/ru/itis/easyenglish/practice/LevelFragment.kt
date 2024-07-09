@@ -20,6 +20,7 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
     private var currentIndex = 0
     private lateinit var level: Level
     private var words: MutableList<WordEntity> = mutableListOf()
+    private var shuffledWords: MutableList<WordEntity> = mutableListOf()
     private lateinit var wordRepository: WordRepository
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +36,8 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
                 level.loadWords()
             }
             words = level.words
-            currentIndex = countCompletedWords(words)
+            shuffledWords = words.toMutableList()
+            shuffledWords.shuffle()
             showWord()
             checkAllWordsCompleted()
         }
@@ -77,27 +79,22 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
     }
 
     private fun showWord() {
-        if (currentIndex < words.size) {
-            binding.practiceEnglishWord.text = words[currentIndex].englishWord
-        } else {
-            currentIndex = 0 // Перезапускаем список слов
-            binding.practiceEnglishWord.text = words[currentIndex].englishWord
+        if (currentIndex >= shuffledWords.size) {
+            shuffledWords.shuffle()
+            currentIndex = 0
         }
+        binding.practiceEnglishWord.text = shuffledWords[currentIndex].englishWord
     }
 
     private fun showTranslation() {
-        if (currentIndex < words.size) {
-            binding.practiceEnglishWord.text = words[currentIndex].russianWord
-        }
+        binding.practiceEnglishWord.text = shuffledWords[currentIndex].russianWord
     }
 
     private fun markWordAsCompleted(completed: Boolean) {
-        if (currentIndex < words.size) {
-            val word = words[currentIndex]
-            word.completedStatus = completed
-            CoroutineScope(Dispatchers.IO).launch {
-                wordRepository.updateWord(word)
-            }
+        val word = shuffledWords[currentIndex]
+        word.completedStatus = completed
+        CoroutineScope(Dispatchers.IO).launch {
+            wordRepository.updateWord(word)
         }
     }
 
