@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.easyenglish.R
@@ -33,7 +34,7 @@ class TheoryLevelAdapter(private val words: List<Word>) : RecyclerView.Adapter<T
             } else {
                 expandedLevels.add(level)
             }
-            notifyDataSetChanged()
+            notifyItemChanged(position)
         }
     }
 
@@ -51,11 +52,21 @@ class TheoryLevelAdapter(private val words: List<Word>) : RecyclerView.Adapter<T
             }
             val wordsListView = itemView.findViewById<RecyclerView>(R.id.words_list)
             if (isExpanded) {
-                wordsListView.visibility = View.VISIBLE
+                wordsListView.isVisible = true
+                wordsListView.alpha = 0f
+                wordsListView.animate()
+                    .alpha(1f)
+                    .setDuration(300)
+                    .setListener(null)
                 wordsListView.layoutManager = LinearLayoutManager(itemView.context)
                 wordsListView.adapter = WordAdapter(words)
             } else {
-                wordsListView.visibility = View.GONE
+                wordsListView.animate()
+                    .alpha(0f)
+                    .setDuration(300)
+                    .withEndAction {
+                        wordsListView.isVisible = false
+                    }
             }
         }
     }

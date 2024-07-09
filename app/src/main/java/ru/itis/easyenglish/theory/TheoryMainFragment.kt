@@ -34,12 +34,7 @@ class TheoryMainFragment : Fragment() {
         adapter = TheoryLevelAdapter(wordRepository.getWords())
         recyclerView.adapter = adapter
 
-        val snackbar = Snackbar.make(view, "Чтобы открыть слова, нажмите на нужный уровень",
-            Snackbar.LENGTH_SHORT).setAction("Action", null)
-        val viewSnack: View = snackbar.getView()
-        val params = viewSnack.layoutParams as FrameLayout.LayoutParams
-        params.bottomMargin = 200
-        viewSnack.layoutParams = params
-        snackbar.show()
+        Snackbar.make(view, "Чтобы открыть слова, нажмите на нужный уровень", Snackbar.LENGTH_LONG)
+            .show()
     }
 }
