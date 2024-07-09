@@ -14,6 +14,7 @@
         android:animationCache="true"
         android:forceHasOverlappingRendering="false"
         android:isScrollContainer="false"
+        app:itemBackground="@color/milk"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_menu" />
