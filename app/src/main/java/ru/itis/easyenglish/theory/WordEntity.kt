@@ -12,5 +12,5 @@ data class WordEntity(
     val russianWord: String,
     val level: Int?,
     var completedStatus: Boolean?,
-    val savedStatus: Boolean?
+    var savedStatus: Boolean?
 )
