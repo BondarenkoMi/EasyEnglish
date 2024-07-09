@@ -1,14 +1,17 @@
 package ru.itis.easyenglish.theory
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import ru.itis.easyenglish.R
+
 
 class TheoryMainFragment : Fragment() {
 
@@ -31,7 +34,11 @@ class TheoryMainFragment : Fragment() {
         adapter = TheoryLevelAdapter(wordRepository.getWords())
         recyclerView.adapter = adapter
 
-        Snackbar.make(view, "Чтобы открыть слова, нажмите на нужный уровень", Snackbar.LENGTH_LONG)
-            .show()
+        val snackbar = Snackbar.make(view, "Чтобы открыть слова, нажмите на нужный уровень",
+            Snackbar.LENGTH_SHORT).setAction("Action", null)
+        val viewSnack: View = snackbar.getView()
+        val params = viewSnack.layoutParams as FrameLayout.LayoutParams
+        viewSnack.layoutParams = params
+        snackbar.show()
     }
 }

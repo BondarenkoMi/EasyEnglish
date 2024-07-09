@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_practice_main"
-        android:icon="@color/black"
-        android:title="Практика"/>
-    <item
-        android:id="@+id/navigation_theory"
-        android:icon="@color/black"
-        android:title="Теория"/>
+        android:icon="@drawable/pen_slash_svgrepo_com"
+        android:title="@string/practice"/>
     <item
         android:id="@+id/randomWordFragment"
-        android:icon="@color/black"
-        android:title="Random"/>
+        android:icon="@drawable/random_cube"
+        android:title="@string/random"/>
+    <item
+        android:id="@+id/navigation_theory"
+        android:icon="@drawable/list_ul_alt_svgrepo_com"
+        android:title="@string/theory"/>
 
 </menu>

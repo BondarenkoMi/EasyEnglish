@@ -9,4 +9,7 @@
     <string name="button_cross">Button Cross</string>
     <string name="button_check">Button Check</string>
     <string name="a1">A1</string>
+    <string name="practice">Практика</string>
+    <string name="random">Random</string>
+    <string name="theory">Теория</string>
 </resources>
