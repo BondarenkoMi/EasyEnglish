@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/navigation_practice_main">
+
     <fragment
         android:id="@+id/navigation_practice_main"
         android:name="ru.itis.easyenglish.practice.PraciticeMainFragment"
@@ -14,11 +15,13 @@
             app:destination="@id/levelFragment"
             app:enterAnim="@android:anim/fade_in" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_theory"
         android:name="ru.itis.easyenglish.theory.TheoryMainFragment"
         android:label="theory"
         tools:layout="@layout/fragment_theory_main"/>
+
     <fragment
         android:id="@+id/levelFragment"
         android:name="ru.itis.easyenglish.practice.LevelFragment"
@@ -28,6 +31,4 @@
             app:destination="@id/navigation_practice_main"
             app:enterAnim="@android:anim/fade_out" />
     </fragment>
-
-
 </navigation>

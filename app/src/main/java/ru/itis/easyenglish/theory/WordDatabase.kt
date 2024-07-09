@@ -23,7 +23,14 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
     }
 }
 
-@Database(entities = [WordEntity::class], version = 2)
+val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        // Добавляем уникальный индекс на поле englishWord
+        database.execSQL("CREATE UNIQUE INDEX index_words_englishWord ON words(englishWord)")
+    }
+}
+
+@Database(entities = [WordEntity::class], version = 3)
 abstract class WordDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
 
@@ -38,7 +45,7 @@ abstract class WordDatabase : RoomDatabase() {
                     WordDatabase::class.java,
                     "word_database"
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build()
                 INSTANCE = instance
                 instance

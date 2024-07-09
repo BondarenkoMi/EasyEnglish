@@ -11,9 +11,21 @@ class WordRepository(private val wordDao: WordDao) {
         }
     }
 
+    suspend fun updateWord(word: WordEntity) {
+        wordDao.update(word)
+    }
+
     suspend fun getWordsOfLevel(level: Int): List<WordEntity> {
         return withContext(Dispatchers.IO) {
             wordDao.getWordsByLevel(level)
         }
+    }
+
+    suspend fun getCompletedWordsCount(level: Int): Int {
+        return wordDao.getCompletedWordsCount(level)
+    }
+
+    suspend fun getTotalWordsCount(level: Int): Int {
+        return wordDao.getTotalWordsCount(level)
     }
 }
