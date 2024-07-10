@@ -35,6 +35,6 @@
         <action
             android:id="@+id/action_levelFragment_to_navigation_practice_main"
             app:destination="@id/navigation_practice_main"
-            app:enterAnim="@android:anim/fade_out" />
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
 </navigation>

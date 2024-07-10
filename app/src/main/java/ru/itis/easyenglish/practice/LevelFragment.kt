@@ -113,9 +113,9 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
         }
         binding.practiceEnglishWord.text = shuffledWords[currentIndex].englishWord
         if (shuffledWords[currentIndex].savedStatus == true) {
-            favoriteButton.setImageResource(R.drawable.star_yellow)
+            favoriteButton.setImageResource(R.drawable.star_filled_button)
         } else {
-            favoriteButton.setImageResource(R.drawable.star)
+            favoriteButton.setImageResource(R.drawable.star_button)
         }
     }
 
@@ -133,13 +133,13 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
 
     private fun addToFavorites() {
         shuffledWords[currentIndex].savedStatus = true
-        favoriteButton.setImageResource(R.drawable.star_yellow)
+        favoriteButton.setImageResource(R.drawable.star_filled_button)
         Snackbar.make(requireView(),"Добавлено в избранные.",Snackbar.LENGTH_SHORT).show()
     }
 
     private fun deleteFromFavorites() {
         shuffledWords[currentIndex].savedStatus = false
-        favoriteButton.setImageResource(R.drawable.star)
+        favoriteButton.setImageResource(R.drawable.star_button)
         Snackbar.make(
             requireView(),"Удалено из избранных.",Snackbar.LENGTH_SHORT
         ).show()

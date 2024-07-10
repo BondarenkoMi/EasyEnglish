@@ -20,7 +20,8 @@ import ru.itis.easyenglish.theory.WordEntity
 
 class RandomWordFragment : Fragment(R.layout.fragment_random_word) {
     private var binding: FragmentRandomWordBinding? = null
-    var words: MutableList<WordEntity> = mutableListOf()
+    var words: List<WordEntity> = listOf()
+    private lateinit var wordRepository: WordRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +29,36 @@ class RandomWordFragment : Fragment(R.layout.fragment_random_word) {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_random_word, container, false)
         val text = view.findViewById<TextView>(R.id.textWord)
+
+        /*wordRepository = WordRepository(WordDatabase.getDatabase(requireContext()).wordDao())
+        CoroutineScope(Dispatchers.Main).launch {
+            words = wordRepository.getWords()
+        }*/
+
+        CoroutineScope(Dispatchers.Main).launch {
+            words = withContext(Dispatchers.IO) {
+                WordDatabase.getDatabase(requireContext()).wordDao().getAllWords().toMutableList()
+            }
+            if (words.isNotEmpty()) {
+                val word = getRandomWord()
+                text.text = "${word.englishWord}\n${word.russianWord}"
+            }
+        }
+
+
+        words = listOf(WordEntity(1, "rg", "кп", 1, true, true))
+
+        return view
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val text = view.findViewById<TextView>(R.id.textWord)
         val button = view.findViewById<Button>(R.id.buttonNextWord)
 
-        words.add(WordEntity(0, "rgrg", "кпкп", 0,
-            true, true)) //загрузить все слова из бд
-
-        var word: WordEntity = getRandomWord()
-        text.setText(word.englishWord + '\n' + word.russianWord)
+        var word: WordEntity
 
         val fadeIn = AlphaAnimation(0f, 1f)
         val fadeOut = AlphaAnimation(1f, 0f)
@@ -47,9 +71,6 @@ class RandomWordFragment : Fragment(R.layout.fragment_random_word) {
             text.setText(word.englishWord + '\n' + word.russianWord)
             text.startAnimation(fadeIn)
         }
-
-        return view
-
     }
 
     override fun onDestroy() {
@@ -58,6 +79,6 @@ class RandomWordFragment : Fragment(R.layout.fragment_random_word) {
     }
 
     fun getRandomWord(): WordEntity{
-        return words[0]
+        return words.random()
     }
 }
