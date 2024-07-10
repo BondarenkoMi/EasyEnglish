@@ -3,7 +3,11 @@ package ru.itis.easyenglish.practice
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.Animation.AnimationListener
+import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -54,11 +58,14 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
         crossButton = binding.buttonCross
         val textWord = binding.practiceEnglishWord
         val textLevel = binding.textLevel
+        favoriteButton = binding.favoriteButton
+        val allScreen = binding.allScreen
+
         val fadeIn = AlphaAnimation(0f, 1f)
         val fadeOut = AlphaAnimation(1f, 0f)
-        favoriteButton = binding.favoriteButton
         fadeIn.duration = 1000
         fadeOut.duration = 1000
+
         textLevel.setText(
             when (key) {
                 1 -> "A1"
@@ -80,16 +87,24 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
             }
         }
         checkButton.setOnClickListener {
-                markWordAsCompleted(true)
-                currentIndex++
-                showWord()
-                checkAllWordsCompleted()
+            allScreen.visibility = View.VISIBLE
+            allScreen.startAnimation(fadeIn)
+            markWordAsCompleted(true)
+            currentIndex++
+            showWord()
+            checkAllWordsCompleted()
+            allScreen.startAnimation(fadeOut)
+            allScreen.visibility = View.INVISIBLE
         }
         crossButton.setOnClickListener {
+            allScreen.visibility = View.VISIBLE
+            allScreen.startAnimation(fadeIn)
             markWordAsCompleted(false)
             currentIndex++
             showWord()
             checkAllWordsCompleted()
+            allScreen.startAnimation(fadeOut)
+            allScreen.visibility = View.INVISIBLE
         }
         favoriteButton.setOnClickListener {
             if (shuffledWords[currentIndex].savedStatus == true) {
@@ -134,14 +149,14 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
     private fun addToFavorites() {
         shuffledWords[currentIndex].savedStatus = true
         favoriteButton.setImageResource(R.drawable.star_filled_button)
-        Snackbar.make(requireView(),"Добавлено в избранные.",Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(requireView(), "Добавлено в избранные.", Snackbar.LENGTH_SHORT).show()
     }
 
     private fun deleteFromFavorites() {
         shuffledWords[currentIndex].savedStatus = false
         favoriteButton.setImageResource(R.drawable.star_button)
         Snackbar.make(
-            requireView(),"Удалено из избранных.",Snackbar.LENGTH_SHORT
+            requireView(), "Удалено из избранных.", Snackbar.LENGTH_SHORT
         ).show()
     }
 

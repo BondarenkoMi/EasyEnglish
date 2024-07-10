@@ -144,4 +144,11 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8" />
 
+    <TextView
+        android:id="@+id/allScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/milk"
+        android:visibility="invisible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
