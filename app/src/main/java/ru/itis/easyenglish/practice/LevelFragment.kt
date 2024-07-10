@@ -107,7 +107,7 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
             allScreen.visibility = View.INVISIBLE
         }
         favoriteButton.setOnClickListener {
-            if (shuffledWords[currentIndex].savedStatus == true) {
+            if (shuffledWords[currentIndex].savedStatus) {
                 deleteFromFavorites()
             } else {
                 addToFavorites()
@@ -127,7 +127,7 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
             currentIndex = 0
         }
         binding.practiceEnglishWord.text = shuffledWords[currentIndex].englishWord
-        if (shuffledWords[currentIndex].savedStatus == true) {
+        if (shuffledWords[currentIndex].savedStatus) {
             favoriteButton.setImageResource(R.drawable.star_filled_button)
         } else {
             favoriteButton.setImageResource(R.drawable.star_button)
@@ -147,17 +147,25 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
     }
 
     private fun addToFavorites() {
-        shuffledWords[currentIndex].savedStatus = true
+        val word = shuffledWords[currentIndex]
+        word.savedStatus = true
         favoriteButton.setImageResource(R.drawable.star_filled_button)
         Snackbar.make(requireView(), "Добавлено в избранные.", Snackbar.LENGTH_SHORT).show()
+        CoroutineScope(Dispatchers.IO).launch {
+            wordRepository.updateWord(word)
+        }
     }
 
     private fun deleteFromFavorites() {
-        shuffledWords[currentIndex].savedStatus = false
+        val word = shuffledWords[currentIndex]
+        word.savedStatus = false
         favoriteButton.setImageResource(R.drawable.star_button)
         Snackbar.make(
             requireView(), "Удалено из избранных.", Snackbar.LENGTH_SHORT
         ).show()
+        CoroutineScope(Dispatchers.IO).launch {
+            wordRepository.updateWord(word)
+        }
     }
 
     private fun countCompletedWords(words: List<WordEntity>): Int {
