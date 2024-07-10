@@ -8,13 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import ru.itis.easyenglish.R
 
 class TheoryMainFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var wordAdapter: WordAdapter
+    private lateinit var levelAdapter: TheoryLevelAdapter
+    private lateinit var wordRepository: WordRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,12 +31,15 @@ class TheoryMainFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        val wordRepository = WordRepository(WordDatabase.getDatabase(requireContext()).wordDao())
+        wordRepository = WordRepository(WordDatabase.getDatabase(requireContext()).wordDao())
 
         lifecycleScope.launch {
             val words = wordRepository.getWords()
-            wordAdapter = WordAdapter(words)
-            recyclerView.adapter = wordAdapter
+            levelAdapter = TheoryLevelAdapter(words, wordRepository)
+            recyclerView.adapter = levelAdapter
         }
+
+        // Показ Snackbar с сообщением
+        Snackbar.make(view, "Чтобы открыть слова, нажмите на нужный уровень", Snackbar.LENGTH_LONG).show()
     }
 }

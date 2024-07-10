@@ -1,4 +1,4 @@
-package ru.itis.easyenglish.practice
+package ru.itis.easyenglish.randomword
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

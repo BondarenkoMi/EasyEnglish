@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/randomWordFragment"
-        android:name="ru.itis.easyenglish.practice.RandomWordFragment"
+        android:name="ru.itis.easyenglish.randomword.RandomWordFragment"
         android:label="fragment_random_word"
         tools:layout="@layout/fragment_random_word" />
 
