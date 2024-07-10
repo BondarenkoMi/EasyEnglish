@@ -23,6 +23,12 @@
         tools:layout="@layout/fragment_theory_main"/>
 
     <fragment
+        android:id="@+id/randomWordFragment"
+        android:name="ru.itis.easyenglish.practice.RandomWordFragment"
+        android:label="fragment_random_word"
+        tools:layout="@layout/fragment_random_word" />
+
+    <fragment
         android:id="@+id/levelFragment"
         android:name="ru.itis.easyenglish.practice.LevelFragment"
         android:label="LevelFragment" >

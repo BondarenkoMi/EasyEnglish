@@ -93,7 +93,7 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
         }
         favoriteButton.setOnClickListener {
             if (shuffledWords[currentIndex].savedStatus == true) {
-                deleteFromFavprites()
+                deleteFromFavorites()
             } else {
                 addToFavorites()
             }
@@ -137,8 +137,9 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
         Snackbar.make(requireView(),"Добавлено в избранные.",Snackbar.LENGTH_SHORT).show()
     }
 
-    private fun deleteFromFavprites() {
+    private fun deleteFromFavorites() {
         shuffledWords[currentIndex].savedStatus = false
+        favoriteButton.setImageResource(R.drawable.star)
         Snackbar.make(
             requireView(),"Удалено из избранных.",Snackbar.LENGTH_SHORT
         ).show()
