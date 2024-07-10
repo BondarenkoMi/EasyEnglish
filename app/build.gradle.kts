@@ -9,6 +9,7 @@ android {
     namespace = "ru.itis.easyenglish"
     compileSdk = 34
 
+
     kapt {
         arguments {
             arg("room.schemaLocation", "$projectDir/schemas")
