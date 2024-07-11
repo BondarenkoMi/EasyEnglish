@@ -1,8 +1,11 @@
 package ru.itis.easyenglish.theory
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Switch
 import android.widget.TextView
@@ -48,18 +51,19 @@ class TheoryLevelAdapter(
 
     class LevelViewHolder(itemView: View, private val wordRepository: WordRepository) : RecyclerView.ViewHolder(itemView) {
         private val levelTextView: TextView = itemView.findViewById(R.id.level_text)
-        private val favoritesSwitch: Switch = itemView.findViewById(R.id.favorites_switch)
-        private val levelContainer: RelativeLayout = itemView.findViewById(R.id.level_container)
+        @SuppressLint("UseSwitchCompatOrMaterialCode")
+        private val favoritesSwitch: com.google.android.material.switchmaterial.SwitchMaterial = itemView.findViewById(R.id.favorites_switch)
+        private val levelContainer: androidx.cardview.widget.CardView = itemView.findViewById(R.id.level_container)
         private val wordsListView: RecyclerView = itemView.findViewById(R.id.words_list)
         private lateinit var wordAdapter: WordAdapter
 
         fun bind(level: String, words: List<WordEntity>, isExpanded: Boolean) {
             levelTextView.text = level
             when (level) {
-                "A1" -> levelContainer.setBackgroundColor(0xFF5DD377.toInt())
-                "A2" -> levelContainer.setBackgroundColor(0xFF62CEDA.toInt())
-                "B1" -> levelContainer.setBackgroundColor(0xFFF2F54F.toInt())
-                "B2" -> levelContainer.setBackgroundColor(0xFFF78336.toInt())
+                "A1" -> levelContainer.setBackgroundResource(R.drawable.gradient1)
+                "A2" -> levelContainer.setBackgroundResource(R.drawable.gradient2)
+                "B1" -> levelContainer.setBackgroundResource(R.drawable.gradient3)
+                "B2" -> levelContainer.setBackgroundResource(R.drawable.gradient4)
             }
 
             favoritesSwitch.setOnCheckedChangeListener { _, isChecked ->
@@ -67,7 +71,12 @@ class TheoryLevelAdapter(
                     filterWords(words, isChecked)
                 } else {
                     favoritesSwitch.isChecked = false
-                    Snackbar.make(itemView, "Сначала откройте список", Snackbar.LENGTH_SHORT).show()
+                    var snackbar = Snackbar.make(itemView, "Сначала откройте список", Snackbar.LENGTH_SHORT)
+                    var viewsnack = snackbar.getView()
+                    val params = viewsnack.layoutParams as FrameLayout.LayoutParams
+                    params.bottomMargin = 170
+                    viewsnack.layoutParams = params
+                    snackbar.show()
                 }
             }
 

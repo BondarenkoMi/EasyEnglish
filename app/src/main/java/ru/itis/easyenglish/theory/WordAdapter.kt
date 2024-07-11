@@ -3,6 +3,7 @@ package ru.itis.easyenglish.theory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -42,9 +43,9 @@ class WordAdapter(
             updateFavoriteButton(word.savedStatus == true)
 
             when (word.completedStatus) {
-                true -> itemView.setBackgroundColor(0xFF00FF00.toInt()) // Зеленый
-                false -> itemView.setBackgroundColor(0xFFFF0000.toInt()) // Красный
-                null -> itemView.setBackgroundColor(0xFF808080.toInt()) // Серый
+                true -> wordTextView.setTextColor(0xFF7fff00.toInt()) // Зеленый
+                false -> wordTextView.setTextColor(0xFFFB607F.toInt()) // Красный
+                null -> wordTextView.setTextColor(0xFF808080.toInt()) // Серый
             }
 
             favoriteButton.setOnClickListener {
@@ -59,7 +60,14 @@ class WordAdapter(
         private fun addToFavorites(word: WordEntity) {
             word.savedStatus = true
             updateFavoriteButton(true)
-            Snackbar.make(itemView, "Добавлено в избранные.", Snackbar.LENGTH_SHORT).show()
+
+            var snackbar = Snackbar.make(itemView, "Добавлено в избранные.", Snackbar.LENGTH_SHORT)
+            var viewsnack = snackbar.getView()
+            val params = viewsnack.layoutParams as FrameLayout.LayoutParams
+            params.bottomMargin = 170
+            viewsnack.layoutParams = params
+            snackbar.show()
+
             CoroutineScope(Dispatchers.IO).launch {
                 wordRepository.updateWord(word)
             }
@@ -68,7 +76,14 @@ class WordAdapter(
         private fun deleteFromFavorites(word: WordEntity) {
             word.savedStatus = false
             updateFavoriteButton(false)
-            Snackbar.make(itemView, "Удалено из избранных.", Snackbar.LENGTH_SHORT).show()
+
+            var snackbar = Snackbar.make(itemView, "Удалено из избранных.", Snackbar.LENGTH_SHORT)
+            var viewsnack = snackbar.getView()
+            val params = viewsnack.layoutParams as FrameLayout.LayoutParams
+            params.bottomMargin = 170
+            viewsnack.layoutParams = params
+            snackbar.show()
+
             CoroutineScope(Dispatchers.IO).launch {
                 wordRepository.updateWord(word)
             }

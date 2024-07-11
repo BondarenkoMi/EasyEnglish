@@ -13,6 +13,5 @@
         <item name="android:statusBarColor">@color/milk</item>
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/rubik_family</item>
-        <item name="snackbarStyle">@style/snackbar_style</item>
     </style>
 </resources>

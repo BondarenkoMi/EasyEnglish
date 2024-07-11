@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +41,11 @@ class TheoryMainFragment : Fragment() {
         }
 
         // Показ Snackbar с сообщением
-        Snackbar.make(view, "Чтобы открыть слова, нажмите на нужный уровень", Snackbar.LENGTH_LONG).show()
+        var snackbar = Snackbar.make(view, "Чтобы открыть слова, нажмите на нужный уровень", Snackbar.LENGTH_SHORT)
+        var viewsnack = snackbar.getView()
+        val params = viewsnack.layoutParams as FrameLayout.LayoutParams
+        params.bottomMargin = 170
+        viewsnack.layoutParams = params
+        snackbar.show()
     }
 }

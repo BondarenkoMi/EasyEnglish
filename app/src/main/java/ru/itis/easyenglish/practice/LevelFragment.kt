@@ -1,13 +1,11 @@
 package ru.itis.easyenglish.practice
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.Animation.AnimationListener
-import android.view.animation.AnimationUtils
+import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +18,7 @@ import ru.itis.easyenglish.databinding.FragmentLevelBinding
 import ru.itis.easyenglish.theory.WordDatabase
 import ru.itis.easyenglish.theory.WordEntity
 import ru.itis.easyenglish.theory.WordRepository
+
 
 class LevelFragment : Fragment(R.layout.fragment_level) {
     private var _binding: FragmentLevelBinding? = null
@@ -150,7 +149,14 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
         val word = shuffledWords[currentIndex]
         word.savedStatus = true
         favoriteButton.setImageResource(R.drawable.star_filled_button)
-        Snackbar.make(requireView(), "Добавлено в избранные.", Snackbar.LENGTH_SHORT).show()
+
+        var snackbar = Snackbar.make(requireView(), "Добавлено в избранные.", Snackbar.LENGTH_SHORT)
+        var viewsnack = snackbar.getView()
+        val params = viewsnack.layoutParams as FrameLayout.LayoutParams
+        params.bottomMargin = 170
+        viewsnack.layoutParams = params
+        snackbar.show()
+
         CoroutineScope(Dispatchers.IO).launch {
             wordRepository.updateWord(word)
         }
@@ -160,9 +166,16 @@ class LevelFragment : Fragment(R.layout.fragment_level) {
         val word = shuffledWords[currentIndex]
         word.savedStatus = false
         favoriteButton.setImageResource(R.drawable.star_button)
-        Snackbar.make(
+
+        var snackbar = Snackbar.make(
             requireView(), "Удалено из избранных.", Snackbar.LENGTH_SHORT
-        ).show()
+        )
+        var viewsnack = snackbar.getView()
+        val params = viewsnack.layoutParams as FrameLayout.LayoutParams
+        params.bottomMargin = 170
+        viewsnack.layoutParams = params
+        snackbar.show()
+
         CoroutineScope(Dispatchers.IO).launch {
             wordRepository.updateWord(word)
         }
